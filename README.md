@@ -18,14 +18,7 @@ REP-103/105: +X forward (the Front_Panel end), +Y left, +Z up, metres.
 | `RTU_headlite.urdf` | `xacro rtu.urdf.xacro` expanded to plain URDF. Regenerate after editing any `.xacro` file (see below) — don't hand-edit it. |
 | `meshes/` | One STL per link, named identically to the link (e.g. `right_road_wheel_3.stl`). |
 
-## Editing
 
-Edit the `.xacro` files, never `RTU_headlite.urdf` directly. After changing anything, regenerate and check:
-
-```bash
-cd RTU_urdf
-xacro rtu.urdf.xacro -o RTU_headlite.urdf
-check_urdf RTU_headlite.urdf
 ```
 
 ## HEAD-lite payload (placeholder)
@@ -48,9 +41,4 @@ full sub-assembly including its mounting bracket, exported the same way
 as the RTU), the exact OAK camera model (Luxonis publish official
 xacro/URDF per model), and the GNSS antenna's phase-centre offset.
 
-## Provenance
 
-Generated from a STEP-to-URDF export (`RTU - Master Assembly.STEP`) that
-was upside down, off-centre, and flatly named (`part_42_42`, etc.). See
-git history / commit messages for the audit of the original export and
-the renaming/reorientation mapping that produced this structure.
