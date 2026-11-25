@@ -28,24 +28,6 @@ xacro rtu.urdf.xacro -o RTU_headlite.urdf
 check_urdf RTU_headlite.urdf
 ```
 
-### What is xacro, and why bother?
-
-`xacro` is a preprocessor for URDF: it's the same XML, plus macros,
-properties (named constants), simple math, and `<xacro:include>` to split
-one robot across files. `xacro some_file.xacro` expands all of that into
-plain URDF, which is what `robot_state_publisher`, RViz, Gazebo, and
-`check_urdf` actually read — none of them understand `.xacro` directly.
-
-Here it buys two things:
-- **No duplication.** The left and right pods are identical except for a
-  mirrored Y offset, so they're written once as the `rtu_pod` macro and
-  instantiated twice, instead of keeping 44 duplicated links in sync by
-  hand.
-- **A real seam for the payload.** `head_lite.xacro` is a self-contained
-  macro taking a `parent` link and a mount `origin`. Swapping the
-  placeholder boxes for the real HEAD-lite STEP/STL later means replacing
-  this file's insides only — `rtu.urdf.xacro` and the pods don't change.
-
 ## HEAD-lite payload (placeholder)
 
 `head_lite.xacro` currently uses primitive shapes sized from the product
