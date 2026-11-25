@@ -1,0 +1,634 @@
+<?xml version="1.0"?>
+<!-- RTU sensor mast: the 4080-extrusion gantry on top of the two pods,
+     carrying the electronics box, GPS mounts and the HEAD-lite payload
+     mount point (mast_crossbeam_front_lower). Not mirror-symmetric as a
+     macro (asymmetric electronics box placement), so kept as one block. -->
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+  <xacro:macro name="rtu_mast" params="parent *origin">
+    <joint name="mast_joint" type="fixed">
+      <parent link="${parent}"/><child link="mast"/>
+      <xacro:insert_block name="origin"/>
+    </joint>
+    <link name="mast"/>
+    <link name="mast_bracket_front_left_mid_lower">
+        <inertial>
+          <origin xyz="0.014489 0.014489 0" rpy="0 0 0" />
+          <mass value="0.114793" />
+          <inertia ixx="7.04348e-05" ixy="2.53285e-05" ixz="2.80819e-13" iyy="7.04348e-05" iyz="2.80376e-13" izz="9.67612e-05" />
+        </inertial>
+        <visual>
+          <origin xyz="0 0 0" rpy="0 0 0" />
+          <geometry><mesh filename="meshes/mast_bracket_front_left_mid_lower.stl" scale="1 1 1" /></geometry>
+          <material name="grey" />
+        </visual>
+        <collision>
+          <origin xyz="0 0 0" rpy="0 0 0" />
+          <geometry><mesh filename="meshes/mast_bracket_front_left_mid_lower.stl" scale="1 1 1" /></geometry>
+        </collision>
+      </link>
+    <joint name="mast_bracket_front_left_mid_lower_joint" type="fixed">
+      <parent link="mast"/><child link="mast_bracket_front_left_mid_lower"/>
+      <origin xyz="0.332 0.262 0.74" rpy="0 0 0"/>
+    </joint>
+    <link name="mast_bracket_front_left_mid_upper">
+        <inertial>
+          <origin xyz="0.014489 0.014489 0" rpy="0 0 0" />
+          <mass value="0.114793" />
+          <inertia ixx="7.04348e-05" ixy="2.53285e-05" ixz="2.80591e-13" iyy="7.04348e-05" iyz="2.80778e-13" izz="9.67612e-05" />
+        </inertial>
+        <visual>
+          <origin xyz="0 0 0" rpy="0 0 0" />
+          <geometry><mesh filename="meshes/mast_bracket_front_left_mid_upper.stl" scale="1 1 1" /></geometry>
+          <material name="grey" />
+        </visual>
+        <collision>
+          <origin xyz="0 0 0" rpy="0 0 0" />
+          <geometry><mesh filename="meshes/mast_bracket_front_left_mid_upper.stl" scale="1 1 1" /></geometry>
+        </collision>
+      </link>
+    <joint name="mast_bracket_front_left_mid_upper_joint" type="fixed">
+      <parent link="mast"/><child link="mast_bracket_front_left_mid_upper"/>
+      <origin xyz="0.332 0.262 0.78" rpy="0 0 0"/>
+    </joint>
+    <link name="mast_bracket_front_left_rail">
+        <inertial>
+          <origin xyz="0.014489 0 -0.014489" rpy="0 0 0" />
+          <mass value="0.114793" />
+          <inertia ixx="7.04348e-05" ixy="-2.80842e-13" ixz="-2.53285e-05" iyy="9.67612e-05" iyz="2.7722e-13" izz="7.04348e-05" />
+        </inertial>
+        <visual>
+          <origin xyz="0 0 0" rpy="0 0 0" />
+          <geometry><mesh filename="meshes/mast_bracket_front_left_rail.stl" scale="1 1 1" /></geometry>
+          <material name="grey" />
+        </visual>
+        <collision>
+          <origin xyz="0 0 0" rpy="0 0 0" />
+          <geometry><mesh filename="meshes/mast_bracket_front_left_rail.stl" scale="1 1 1" /></geometry>
+        </collision>
+      </link>
+    <joint name="mast_bracket_front_left_rail_joint" type="fixed">
+      <parent link="mast"/><child link="mast_bracket_front_left_rail"/>
+      <origin xyz="0.252 0.32 0.962" rpy="0 0 0"/>
+    </joint>
+    <link name="mast_bracket_front_left_top">
+        <inertial>
+          <origin xyz="0.014489 0.014489 0" rpy="0 0 0" />
+          <mass value="0.114793" />
+          <inertia ixx="7.04348e-05" ixy="2.53285e-05" ixz="2.80769e-13" iyy="7.04348e-05" iyz="2.80147e-13" izz="9.67612e-05" />
+        </inertial>
+        <visual>
+          <origin xyz="0 0 0" rpy="0 0 0" />
+          <geometry><mesh filename="meshes/mast_bracket_front_left_top.stl" scale="1 1 1" /></geometry>
+          <material name="grey" />
+        </visual>
+        <collision>
+          <origin xyz="0 0 0" rpy="0 0 0" />
+          <geometry><mesh filename="meshes/mast_bracket_front_left_top.stl" scale="1 1 1" /></geometry>
+        </collision>
+      </link>
+    <joint name="mast_bracket_front_left_top_joint" type="fixed">
+      <parent link="mast"/><child link="mast_bracket_front_left_top"/>
+      <origin xyz="0.332 0.262 0.981" rpy="0 0 0"/>
+    </joint>
+    <link name="mast_bracket_front_right_mid_lower">
+        <inertial>
+          <origin xyz="0.014489 -0.014489 0" rpy="0 0 0" />
+          <mass value="0.114793" />
+          <inertia ixx="7.04348e-05" ixy="-2.53285e-05" ixz="-2.8092e-13" iyy="7.04348e-05" iyz="2.80847e-13" izz="9.67612e-05" />
+        </inertial>
+        <visual>
+          <origin xyz="0 0 0" rpy="0 0 0" />
+          <geometry><mesh filename="meshes/mast_bracket_front_right_mid_lower.stl" scale="1 1 1" /></geometry>
+          <material name="grey" />
+        </visual>
+        <collision>
+          <origin xyz="0 0 0" rpy="0 0 0" />
+          <geometry><mesh filename="meshes/mast_bracket_front_right_mid_lower.stl" scale="1 1 1" /></geometry>
+        </collision>
+      </link>
+    <joint name="mast_bracket_front_right_mid_lower_joint" type="fixed">
+      <parent link="mast"/><child link="mast_bracket_front_right_mid_lower"/>
+      <origin xyz="0.332 -0.262 0.74" rpy="0 0 0"/>
+    </joint>
+    <link name="mast_bracket_front_right_mid_upper">
+        <inertial>
+          <origin xyz="0.014489 -0.014489 0" rpy="0 0 0" />
+          <mass value="0.114793" />
+          <inertia ixx="7.04348e-05" ixy="-2.53285e-05" ixz="-2.81053e-13" iyy="7.04348e-05" iyz="2.8087e-13" izz="9.67612e-05" />
+        </inertial>
+        <visual>
+          <origin xyz="0 0 0" rpy="0 0 0" />
+          <geometry><mesh filename="meshes/mast_bracket_front_right_mid_upper.stl" scale="1 1 1" /></geometry>
+          <material name="grey" />
+        </visual>
+        <collision>
+          <origin xyz="0 0 0" rpy="0 0 0" />
+          <geometry><mesh filename="meshes/mast_bracket_front_right_mid_upper.stl" scale="1 1 1" /></geometry>
+        </collision>
+      </link>
+    <joint name="mast_bracket_front_right_mid_upper_joint" type="fixed">
+      <parent link="mast"/><child link="mast_bracket_front_right_mid_upper"/>
+      <origin xyz="0.332 -0.262 0.78" rpy="0 0 0"/>
+    </joint>
+    <link name="mast_bracket_front_right_rail">
+        <inertial>
+          <origin xyz="0.014489 0 -0.014489" rpy="0 0 0" />
+          <mass value="0.114793" />
+          <inertia ixx="7.04348e-05" ixy="-2.8088e-13" ixz="-2.53285e-05" iyy="9.67612e-05" iyz="2.80417e-13" izz="7.04348e-05" />
+        </inertial>
+        <visual>
+          <origin xyz="0 0 0" rpy="0 0 0" />
+          <geometry><mesh filename="meshes/mast_bracket_front_right_rail.stl" scale="1 1 1" /></geometry>
+          <material name="grey" />
+        </visual>
+        <collision>
+          <origin xyz="0 0 0" rpy="0 0 0" />
+          <geometry><mesh filename="meshes/mast_bracket_front_right_rail.stl" scale="1 1 1" /></geometry>
+        </collision>
+      </link>
+    <joint name="mast_bracket_front_right_rail_joint" type="fixed">
+      <parent link="mast"/><child link="mast_bracket_front_right_rail"/>
+      <origin xyz="0.252 -0.32 0.962" rpy="0 0 0"/>
+    </joint>
+    <link name="mast_bracket_front_right_top">
+        <inertial>
+          <origin xyz="0.014489 -0.014489 0" rpy="0 0 0" />
+          <mass value="0.114793" />
+          <inertia ixx="7.04348e-05" ixy="-2.53285e-05" ixz="-2.81739e-13" iyy="7.04348e-05" iyz="2.8071e-13" izz="9.67612e-05" />
+        </inertial>
+        <visual>
+          <origin xyz="0 0 0" rpy="0 0 0" />
+          <geometry><mesh filename="meshes/mast_bracket_front_right_top.stl" scale="1 1 1" /></geometry>
+          <material name="grey" />
+        </visual>
+        <collision>
+          <origin xyz="0 0 0" rpy="0 0 0" />
+          <geometry><mesh filename="meshes/mast_bracket_front_right_top.stl" scale="1 1 1" /></geometry>
+        </collision>
+      </link>
+    <joint name="mast_bracket_front_right_top_joint" type="fixed">
+      <parent link="mast"/><child link="mast_bracket_front_right_top"/>
+      <origin xyz="0.332 -0.262 0.981" rpy="0 0 0"/>
+    </joint>
+    <link name="mast_bracket_rear_left_mid_lower">
+        <inertial>
+          <origin xyz="-0.014489 0.014489 0" rpy="0 0 0" />
+          <mass value="0.114793" />
+          <inertia ixx="7.04348e-05" ixy="-2.53285e-05" ixz="-2.81034e-13" iyy="7.04348e-05" iyz="2.83779e-13" izz="9.67612e-05" />
+        </inertial>
+        <visual>
+          <origin xyz="0 0 0" rpy="0 0 0" />
+          <geometry><mesh filename="meshes/mast_bracket_rear_left_mid_lower.stl" scale="1 1 1" /></geometry>
+          <material name="grey" />
+        </visual>
+        <collision>
+          <origin xyz="0 0 0" rpy="0 0 0" />
+          <geometry><mesh filename="meshes/mast_bracket_rear_left_mid_lower.stl" scale="1 1 1" /></geometry>
+        </collision>
+      </link>
+    <joint name="mast_bracket_rear_left_mid_lower_joint" type="fixed">
+      <parent link="mast"/><child link="mast_bracket_rear_left_mid_lower"/>
+      <origin xyz="-0.332 0.262 0.74" rpy="0 0 0"/>
+    </joint>
+    <link name="mast_bracket_rear_left_mid_upper">
+        <inertial>
+          <origin xyz="-0.014489 0.014489 0" rpy="0 0 0" />
+          <mass value="0.114793" />
+          <inertia ixx="7.04348e-05" ixy="-2.53285e-05" ixz="-2.80943e-13" iyy="7.04348e-05" iyz="2.81922e-13" izz="9.67612e-05" />
+        </inertial>
+        <visual>
+          <origin xyz="0 0 0" rpy="0 0 0" />
+          <geometry><mesh filename="meshes/mast_bracket_rear_left_mid_upper.stl" scale="1 1 1" /></geometry>
+          <material name="grey" />
+        </visual>
+        <collision>
+          <origin xyz="0 0 0" rpy="0 0 0" />
+          <geometry><mesh filename="meshes/mast_bracket_rear_left_mid_upper.stl" scale="1 1 1" /></geometry>
+        </collision>
+      </link>
+    <joint name="mast_bracket_rear_left_mid_upper_joint" type="fixed">
+      <parent link="mast"/><child link="mast_bracket_rear_left_mid_upper"/>
+      <origin xyz="-0.332 0.262 0.78" rpy="0 0 0"/>
+    </joint>
+    <link name="mast_bracket_rear_left_rail">
+        <inertial>
+          <origin xyz="-0.014489 0 -0.014489" rpy="0 0 0" />
+          <mass value="0.114793" />
+          <inertia ixx="7.04348e-05" ixy="-2.81098e-13" ixz="2.53285e-05" iyy="9.67612e-05" iyz="-2.81318e-13" izz="7.04348e-05" />
+        </inertial>
+        <visual>
+          <origin xyz="0 0 0" rpy="0 0 0" />
+          <geometry><mesh filename="meshes/mast_bracket_rear_left_rail.stl" scale="1 1 1" /></geometry>
+          <material name="grey" />
+        </visual>
+        <collision>
+          <origin xyz="0 0 0" rpy="0 0 0" />
+          <geometry><mesh filename="meshes/mast_bracket_rear_left_rail.stl" scale="1 1 1" /></geometry>
+        </collision>
+      </link>
+    <joint name="mast_bracket_rear_left_rail_joint" type="fixed">
+      <parent link="mast"/><child link="mast_bracket_rear_left_rail"/>
+      <origin xyz="-0.252 0.32 0.962" rpy="0 0 0"/>
+    </joint>
+    <link name="mast_bracket_rear_left_top">
+        <inertial>
+          <origin xyz="-0.014489 0.014489 0" rpy="0 0 0" />
+          <mass value="0.114793" />
+          <inertia ixx="7.04348e-05" ixy="-2.53285e-05" ixz="-2.81153e-13" iyy="7.04348e-05" iyz="2.83129e-13" izz="9.67612e-05" />
+        </inertial>
+        <visual>
+          <origin xyz="0 0 0" rpy="0 0 0" />
+          <geometry><mesh filename="meshes/mast_bracket_rear_left_top.stl" scale="1 1 1" /></geometry>
+          <material name="grey" />
+        </visual>
+        <collision>
+          <origin xyz="0 0 0" rpy="0 0 0" />
+          <geometry><mesh filename="meshes/mast_bracket_rear_left_top.stl" scale="1 1 1" /></geometry>
+        </collision>
+      </link>
+    <joint name="mast_bracket_rear_left_top_joint" type="fixed">
+      <parent link="mast"/><child link="mast_bracket_rear_left_top"/>
+      <origin xyz="-0.332 0.262 0.98" rpy="0 0 0"/>
+    </joint>
+    <link name="mast_bracket_rear_right_mid_lower">
+        <inertial>
+          <origin xyz="-0.014489 -0.014489 0" rpy="0 0 0" />
+          <mass value="0.114793" />
+          <inertia ixx="7.04348e-05" ixy="2.53285e-05" ixz="2.80289e-13" iyy="7.04348e-05" iyz="2.81149e-13" izz="9.67612e-05" />
+        </inertial>
+        <visual>
+          <origin xyz="0 0 0" rpy="0 0 0" />
+          <geometry><mesh filename="meshes/mast_bracket_rear_right_mid_lower.stl" scale="1 1 1" /></geometry>
+          <material name="grey" />
+        </visual>
+        <collision>
+          <origin xyz="0 0 0" rpy="0 0 0" />
+          <geometry><mesh filename="meshes/mast_bracket_rear_right_mid_lower.stl" scale="1 1 1" /></geometry>
+        </collision>
+      </link>
+    <joint name="mast_bracket_rear_right_mid_lower_joint" type="fixed">
+      <parent link="mast"/><child link="mast_bracket_rear_right_mid_lower"/>
+      <origin xyz="-0.332 -0.262 0.74" rpy="0 0 0"/>
+    </joint>
+    <link name="mast_bracket_rear_right_mid_upper">
+        <inertial>
+          <origin xyz="-0.014489 -0.014489 0" rpy="0 0 0" />
+          <mass value="0.114793" />
+          <inertia ixx="7.04348e-05" ixy="2.53285e-05" ixz="2.81364e-13" iyy="7.04348e-05" iyz="2.80755e-13" izz="9.67612e-05" />
+        </inertial>
+        <visual>
+          <origin xyz="0 0 0" rpy="0 0 0" />
+          <geometry><mesh filename="meshes/mast_bracket_rear_right_mid_upper.stl" scale="1 1 1" /></geometry>
+          <material name="grey" />
+        </visual>
+        <collision>
+          <origin xyz="0 0 0" rpy="0 0 0" />
+          <geometry><mesh filename="meshes/mast_bracket_rear_right_mid_upper.stl" scale="1 1 1" /></geometry>
+        </collision>
+      </link>
+    <joint name="mast_bracket_rear_right_mid_upper_joint" type="fixed">
+      <parent link="mast"/><child link="mast_bracket_rear_right_mid_upper"/>
+      <origin xyz="-0.332 -0.262 0.78" rpy="0 0 0"/>
+    </joint>
+    <link name="mast_bracket_rear_right_rail">
+        <inertial>
+          <origin xyz="-0.014489 0 -0.014489" rpy="0 0 0" />
+          <mass value="0.114793" />
+          <inertia ixx="7.04348e-05" ixy="-2.8089e-13" ixz="2.53285e-05" iyy="9.67612e-05" iyz="-2.81652e-13" izz="7.04348e-05" />
+        </inertial>
+        <visual>
+          <origin xyz="0 0 0" rpy="0 0 0" />
+          <geometry><mesh filename="meshes/mast_bracket_rear_right_rail.stl" scale="1 1 1" /></geometry>
+          <material name="grey" />
+        </visual>
+        <collision>
+          <origin xyz="0 0 0" rpy="0 0 0" />
+          <geometry><mesh filename="meshes/mast_bracket_rear_right_rail.stl" scale="1 1 1" /></geometry>
+        </collision>
+      </link>
+    <joint name="mast_bracket_rear_right_rail_joint" type="fixed">
+      <parent link="mast"/><child link="mast_bracket_rear_right_rail"/>
+      <origin xyz="-0.252 -0.32 0.962" rpy="0 0 0"/>
+    </joint>
+    <link name="mast_bracket_rear_right_top">
+        <inertial>
+          <origin xyz="-0.014489 -0.014489 0" rpy="0 0 0" />
+          <mass value="0.114793" />
+          <inertia ixx="7.04348e-05" ixy="2.53285e-05" ixz="2.81144e-13" iyy="7.04348e-05" iyz="2.80646e-13" izz="9.67612e-05" />
+        </inertial>
+        <visual>
+          <origin xyz="0 0 0" rpy="0 0 0" />
+          <geometry><mesh filename="meshes/mast_bracket_rear_right_top.stl" scale="1 1 1" /></geometry>
+          <material name="grey" />
+        </visual>
+        <collision>
+          <origin xyz="0 0 0" rpy="0 0 0" />
+          <geometry><mesh filename="meshes/mast_bracket_rear_right_top.stl" scale="1 1 1" /></geometry>
+        </collision>
+      </link>
+    <joint name="mast_bracket_rear_right_top_joint" type="fixed">
+      <parent link="mast"/><child link="mast_bracket_rear_right_top"/>
+      <origin xyz="-0.332 -0.262 0.98" rpy="0 0 0"/>
+    </joint>
+    <link name="mast_crossbeam_front_lower">
+        <inertial>
+          <origin xyz="0 0 0" rpy="0 0 0" />
+          <mass value="3.80518" />
+          <inertia ixx="0.319451" ixy="2.04914e-15" ixz="2.92735e-15" iyy="0.00296632" iyz="-2.92735e-16" izz="0.317713" />
+        </inertial>
+        <visual>
+          <origin xyz="0 0 0" rpy="0 0 0" />
+          <geometry><mesh filename="meshes/mast_crossbeam_front_lower.stl" scale="1 1 1" /></geometry>
+          <material name="black" />
+        </visual>
+        <collision>
+          <origin xyz="0 0 0" rpy="0 0 0" />
+          <geometry><mesh filename="meshes/mast_crossbeam_front_lower.stl" scale="1 1 1" /></geometry>
+        </collision>
+      </link>
+    <joint name="mast_crossbeam_front_lower_joint" type="fixed">
+      <parent link="mast"/><child link="mast_crossbeam_front_lower"/>
+      <origin xyz="0.39 0 0.76" rpy="0 0 0"/>
+    </joint>
+    <link name="mast_crossbeam_front_upper">
+        <inertial>
+          <origin xyz="0 0 0" rpy="0 0 0" />
+          <mass value="3.80518" />
+          <inertia ixx="0.319451" ixy="-2.19551e-15" ixz="-7.31836e-16" iyy="0.00296632" iyz="-7.6111e-15" izz="0.317713" />
+        </inertial>
+        <visual>
+          <origin xyz="0 0 0" rpy="0 0 0" />
+          <geometry><mesh filename="meshes/mast_crossbeam_front_upper.stl" scale="1 1 1" /></geometry>
+          <material name="black" />
+        </visual>
+        <collision>
+          <origin xyz="0 0 0" rpy="0 0 0" />
+          <geometry><mesh filename="meshes/mast_crossbeam_front_upper.stl" scale="1 1 1" /></geometry>
+        </collision>
+      </link>
+    <joint name="mast_crossbeam_front_upper_joint" type="fixed">
+      <parent link="mast"/><child link="mast_crossbeam_front_upper"/>
+      <origin xyz="0.39 0 0.96" rpy="0 0 0"/>
+    </joint>
+    <link name="mast_crossbeam_rear_lower">
+        <inertial>
+          <origin xyz="0 0 0" rpy="0 0 0" />
+          <mass value="3.80518" />
+          <inertia ixx="0.319451" ixy="-1.65395e-14" ixz="-2.35651e-14" iyy="0.00296632" iyz="1.05384e-14" izz="0.317713" />
+        </inertial>
+        <visual>
+          <origin xyz="0 0 0" rpy="0 0 0" />
+          <geometry><mesh filename="meshes/mast_crossbeam_rear_lower.stl" scale="1 1 1" /></geometry>
+          <material name="black" />
+        </visual>
+        <collision>
+          <origin xyz="0 0 0" rpy="0 0 0" />
+          <geometry><mesh filename="meshes/mast_crossbeam_rear_lower.stl" scale="1 1 1" /></geometry>
+        </collision>
+      </link>
+    <joint name="mast_crossbeam_rear_lower_joint" type="fixed">
+      <parent link="mast"/><child link="mast_crossbeam_rear_lower"/>
+      <origin xyz="-0.39 0 0.76" rpy="0 0 0"/>
+    </joint>
+    <link name="mast_crossbeam_rear_upper">
+        <inertial>
+          <origin xyz="0 0 0" rpy="0 0 0" />
+          <mass value="3.80518" />
+          <inertia ixx="0.319451" ixy="3.80555e-15" ixz="1.46367e-15" iyy="0.00296632" iyz="5.85469e-16" izz="0.317713" />
+        </inertial>
+        <visual>
+          <origin xyz="0 0 0" rpy="0 0 0" />
+          <geometry><mesh filename="meshes/mast_crossbeam_rear_upper.stl" scale="1 1 1" /></geometry>
+          <material name="black" />
+        </visual>
+        <collision>
+          <origin xyz="0 0 0" rpy="0 0 0" />
+          <geometry><mesh filename="meshes/mast_crossbeam_rear_upper.stl" scale="1 1 1" /></geometry>
+        </collision>
+      </link>
+    <joint name="mast_crossbeam_rear_upper_joint" type="fixed">
+      <parent link="mast"/><child link="mast_crossbeam_rear_upper"/>
+      <origin xyz="-0.39 0 0.96" rpy="0 0 0"/>
+    </joint>
+    <link name="mast_electronics_box">
+        <inertial>
+          <origin xyz="4.7e-05 8.7e-05 0.000437" rpy="0 0 0" />
+          <mass value="0.672714" />
+          <inertia ixx="0.00360271" ixy="1.79204e-06" ixz="2.7775e-06" iyy="0.00454803" iyz="-1.25104e-07" izz="0.00215146" />
+        </inertial>
+        <visual>
+          <origin xyz="0 0 0" rpy="0 0 0" />
+          <geometry><mesh filename="meshes/mast_electronics_box.stl" scale="1 1 1" /></geometry>
+          <material name="white" />
+        </visual>
+        <collision>
+          <origin xyz="0 0 0" rpy="0 0 0" />
+          <geometry><mesh filename="meshes/mast_electronics_box.stl" scale="1 1 1" /></geometry>
+        </collision>
+      </link>
+    <joint name="mast_electronics_box_joint" type="fixed">
+      <parent link="mast"/><child link="mast_electronics_box"/>
+      <origin xyz="-0.3025 0.3775 0.9" rpy="0 0 0"/>
+    </joint>
+    <link name="mast_electronics_box_antenna">
+        <inertial>
+          <origin xyz="0 0.004106 -0.001908" rpy="0 0 0" />
+          <mass value="0.0228833" />
+          <inertia ixx="2.262e-05" ixy="1.96681e-16" ixz="-2.63004e-17" iyy="2.24908e-05" iyz="-6.67984e-07" izz="3.99526e-07" />
+        </inertial>
+        <visual>
+          <origin xyz="0 0 0" rpy="0 0 0" />
+          <geometry><mesh filename="meshes/mast_electronics_box_antenna.stl" scale="1 1 1" /></geometry>
+          <material name="black" />
+        </visual>
+        <collision>
+          <origin xyz="0 0 0" rpy="0 0 0" />
+          <geometry><mesh filename="meshes/mast_electronics_box_antenna.stl" scale="1 1 1" /></geometry>
+        </collision>
+      </link>
+    <joint name="mast_electronics_box_antenna_joint" type="fixed">
+      <parent link="mast_electronics_box"/><child link="mast_electronics_box_antenna"/>
+      <origin xyz="-0.0375 0.047182 0.119625" rpy="0 0 0"/>
+    </joint>
+    <link name="mast_electronics_box_push_button">
+        <inertial>
+          <origin xyz="-3e-06 0.000509 -3e-06" rpy="0 0 0" />
+          <mass value="0.013127" />
+          <inertia ixx="9.65582e-07" ixy="4.86697e-10" ixz="-6.22347e-11" iyy="3.87723e-07" iyz="1.65374e-10" izz="9.65489e-07" />
+        </inertial>
+        <visual>
+          <origin xyz="0 0 0" rpy="0 0 0" />
+          <geometry><mesh filename="meshes/mast_electronics_box_push_button.stl" scale="1 1 1" /></geometry>
+          <material name="grey" />
+        </visual>
+        <collision>
+          <origin xyz="0 0 0" rpy="0 0 0" />
+          <geometry><mesh filename="meshes/mast_electronics_box_push_button.stl" scale="1 1 1" /></geometry>
+        </collision>
+      </link>
+    <joint name="mast_electronics_box_push_button_joint" type="fixed">
+      <parent link="mast_electronics_box"/><child link="mast_electronics_box_push_button"/>
+      <origin xyz="0.0275 0.02625 -0.07" rpy="0 0 0"/>
+    </joint>
+    <link name="mast_gps_mount_left">
+        <inertial>
+          <origin xyz="-0.005448 0 0.000575" rpy="0 0 0" />
+          <mass value="0.0433799" />
+          <inertia ixx="6.0366e-06" ixy="2.03695e-11" ixz="1.05531e-06" iyy="2.26923e-05" iyz="-2.08115e-12" izz="2.81584e-05" />
+        </inertial>
+        <visual>
+          <origin xyz="0 0 0" rpy="0 0 0" />
+          <geometry><mesh filename="meshes/mast_gps_mount_left.stl" scale="1 1 1" /></geometry>
+          <material name="grey" />
+        </visual>
+        <collision>
+          <origin xyz="0 0 0" rpy="0 0 0" />
+          <geometry><mesh filename="meshes/mast_gps_mount_left.stl" scale="1 1 1" /></geometry>
+        </collision>
+      </link>
+    <joint name="mast_gps_mount_left_joint" type="fixed">
+      <parent link="mast"/><child link="mast_gps_mount_left"/>
+      <origin xyz="-0.33 0.32 1.003" rpy="0 0 0"/>
+    </joint>
+    <link name="mast_gps_mount_right">
+        <inertial>
+          <origin xyz="-0.005448 0 0.000575" rpy="0 0 0" />
+          <mass value="0.0433799" />
+          <inertia ixx="6.0366e-06" ixy="2.03698e-11" ixz="1.05531e-06" iyy="2.26923e-05" iyz="-2.08212e-12" izz="2.81584e-05" />
+        </inertial>
+        <visual>
+          <origin xyz="0 0 0" rpy="0 0 0" />
+          <geometry><mesh filename="meshes/mast_gps_mount_right.stl" scale="1 1 1" /></geometry>
+          <material name="grey" />
+        </visual>
+        <collision>
+          <origin xyz="0 0 0" rpy="0 0 0" />
+          <geometry><mesh filename="meshes/mast_gps_mount_right.stl" scale="1 1 1" /></geometry>
+        </collision>
+      </link>
+    <joint name="mast_gps_mount_right_joint" type="fixed">
+      <parent link="mast"/><child link="mast_gps_mount_right"/>
+      <origin xyz="-0.33 -0.32 1.003" rpy="0 0 0"/>
+    </joint>
+    <link name="mast_side_rail_left">
+        <inertial>
+          <origin xyz="0 0 0" rpy="0 0 0" />
+          <mass value="2.20701" />
+          <inertia ixx="0.00172047" ixy="5.12286e-16" ixz="1.02457e-15" iyy="0.063234" iyz="-2.92735e-15" izz="0.0622259" />
+        </inertial>
+        <visual>
+          <origin xyz="0 0 0" rpy="0 0 0" />
+          <geometry><mesh filename="meshes/mast_side_rail_left.stl" scale="1 1 1" /></geometry>
+          <material name="black" />
+        </visual>
+        <collision>
+          <origin xyz="0 0 0" rpy="0 0 0" />
+          <geometry><mesh filename="meshes/mast_side_rail_left.stl" scale="1 1 1" /></geometry>
+        </collision>
+      </link>
+    <joint name="mast_side_rail_left_joint" type="fixed">
+      <parent link="mast"/><child link="mast_side_rail_left"/>
+      <origin xyz="0 0.32 0.884" rpy="0 0 0"/>
+    </joint>
+    <link name="mast_side_rail_right">
+        <inertial>
+          <origin xyz="0 0 0" rpy="0 0 0" />
+          <mass value="2.20701" />
+          <inertia ixx="0.00172047" ixy="-4.7112e-16" ixz="3.11031e-16" iyy="0.063234" iyz="-1.90277e-15" izz="0.0622259" />
+        </inertial>
+        <visual>
+          <origin xyz="0 0 0" rpy="0 0 0" />
+          <geometry><mesh filename="meshes/mast_side_rail_right.stl" scale="1 1 1" /></geometry>
+          <material name="black" />
+        </visual>
+        <collision>
+          <origin xyz="0 0 0" rpy="0 0 0" />
+          <geometry><mesh filename="meshes/mast_side_rail_right.stl" scale="1 1 1" /></geometry>
+        </collision>
+      </link>
+    <joint name="mast_side_rail_right_joint" type="fixed">
+      <parent link="mast"/><child link="mast_side_rail_right"/>
+      <origin xyz="0 -0.32 0.884" rpy="0 0 0"/>
+    </joint>
+    <link name="mast_upright_front_left">
+        <inertial>
+          <origin xyz="0 0 0" rpy="0 0 0" />
+          <mass value="3.80518" />
+          <inertia ixx="0.317713" ixy="-1.72713e-14" ixz="7.31836e-17" iyy="0.319451" iyz="-1.08312e-14" izz="0.00296632" />
+        </inertial>
+        <visual>
+          <origin xyz="0 0 0" rpy="0 0 0" />
+          <geometry><mesh filename="meshes/mast_upright_front_left.stl" scale="1 1 1" /></geometry>
+          <material name="black" />
+        </visual>
+        <collision>
+          <origin xyz="0 0 0" rpy="0 0 0" />
+          <geometry><mesh filename="meshes/mast_upright_front_left.stl" scale="1 1 1" /></geometry>
+        </collision>
+      </link>
+    <joint name="mast_upright_front_left_joint" type="fixed">
+      <parent link="mast"/><child link="mast_upright_front_left"/>
+      <origin xyz="0.33 0.32 0.5" rpy="0 0 0"/>
+    </joint>
+    <link name="mast_upright_front_right">
+        <inertial>
+          <origin xyz="0 0 0" rpy="0 0 0" />
+          <mass value="3.80518" />
+          <inertia ixx="0.317713" ixy="6.22061e-16" ixz="7.31836e-16" iyy="0.319451" iyz="7.31836e-17" izz="0.00296632" />
+        </inertial>
+        <visual>
+          <origin xyz="0 0 0" rpy="0 0 0" />
+          <geometry><mesh filename="meshes/mast_upright_front_right.stl" scale="1 1 1" /></geometry>
+          <material name="black" />
+        </visual>
+        <collision>
+          <origin xyz="0 0 0" rpy="0 0 0" />
+          <geometry><mesh filename="meshes/mast_upright_front_right.stl" scale="1 1 1" /></geometry>
+        </collision>
+      </link>
+    <joint name="mast_upright_front_right_joint" type="fixed">
+      <parent link="mast"/><child link="mast_upright_front_right"/>
+      <origin xyz="0.33 -0.32 0.5" rpy="0 0 0"/>
+    </joint>
+    <link name="mast_upright_rear_left">
+        <inertial>
+          <origin xyz="0 0 0" rpy="0 0 0" />
+          <mass value="3.80518" />
+          <inertia ixx="0.317713" ixy="1.20021e-14" ixz="8.78204e-16" iyy="0.319451" iyz="-1.14166e-14" izz="0.00296632" />
+        </inertial>
+        <visual>
+          <origin xyz="0 0 0" rpy="0 0 0" />
+          <geometry><mesh filename="meshes/mast_upright_rear_left.stl" scale="1 1 1" /></geometry>
+          <material name="black" />
+        </visual>
+        <collision>
+          <origin xyz="0 0 0" rpy="0 0 0" />
+          <geometry><mesh filename="meshes/mast_upright_rear_left.stl" scale="1 1 1" /></geometry>
+        </collision>
+      </link>
+    <joint name="mast_upright_rear_left_joint" type="fixed">
+      <parent link="mast"/><child link="mast_upright_rear_left"/>
+      <origin xyz="-0.33 0.32 0.5" rpy="0 0 0"/>
+    </joint>
+    <link name="mast_upright_rear_right">
+        <inertial>
+          <origin xyz="0 0 0" rpy="0 0 0" />
+          <mass value="3.80518" />
+          <inertia ixx="0.317713" ixy="2.08573e-15" ixz="5.85469e-15" iyy="0.319451" iyz="-3.22008e-15" izz="0.00296632" />
+        </inertial>
+        <visual>
+          <origin xyz="0 0 0" rpy="0 0 0" />
+          <geometry><mesh filename="meshes/mast_upright_rear_right.stl" scale="1 1 1" /></geometry>
+          <material name="black" />
+        </visual>
+        <collision>
+          <origin xyz="0 0 0" rpy="0 0 0" />
+          <geometry><mesh filename="meshes/mast_upright_rear_right.stl" scale="1 1 1" /></geometry>
+        </collision>
+      </link>
+    <joint name="mast_upright_rear_right_joint" type="fixed">
+      <parent link="mast"/><child link="mast_upright_rear_right"/>
+      <origin xyz="-0.33 -0.32 0.5" rpy="0 0 0"/>
+    </joint>
+  </xacro:macro>
+</robot>

@@ -1,0 +1,858 @@
+<?xml version="1.0"?>
+<!-- RTU track pod (left or right). Mirror-symmetric about the
+     robot X-Z plane: instantiate once per side with `side`=1 (left)
+     or `side`=-1 (right); `prefix` is the link-name prefix to use. -->
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+  <xacro:macro name="rtu_pod" params="prefix side parent *origin">
+    <joint name="${prefix}_pod_joint" type="fixed">
+      <parent link="${parent}"/><child link="${prefix}_pod"/>
+      <xacro:insert_block name="origin"/>
+    </joint>
+    <link name="${prefix}_pod"/>
+    <link name="${prefix}_battery">
+        <inertial>
+          <origin xyz="0 0 0" rpy="0 0 0" />
+          <mass value="35.047" />
+          <inertia ixx="0.273219" ixy="1.71507e-11" ixz="-6.39807e-11" iyy="0.342145" iyz="3.17912e-10" izz="0.404856" />
+        </inertial>
+        <visual>
+          <origin xyz="0 0 0" rpy="0 0 0" />
+          <geometry><mesh filename="meshes/${prefix}_battery.stl" scale="1 1 1" /></geometry>
+          <material name="grey" />
+        </visual>
+        <collision>
+          <origin xyz="0 0 0" rpy="0 0 0" />
+          <geometry><mesh filename="meshes/${prefix}_battery.stl" scale="1 1 1" /></geometry>
+        </collision>
+      </link>
+    <joint name="${prefix}_battery_joint" type="fixed">
+      <parent link="${prefix}_pod"/><child link="${prefix}_battery"/>
+      <origin xyz="0.0475 0 0.265" rpy="0 0 0"/>
+    </joint>
+    <link name="${prefix}_battery_bay_post_front_lower">
+        <inertial>
+          <origin xyz="0 0 0" rpy="0 0 0" />
+          <mass value="0.440782" />
+          <inertia ixx="0.00236355" ixy="1.09775e-16" ixz="6.43216e-19" iyy="0.000265879" iyz="-3.74494e-17" izz="0.00213383" />
+        </inertial>
+        <visual>
+          <origin xyz="0 0 0" rpy="0 0 0" />
+          <geometry><mesh filename="meshes/${prefix}_battery_bay_post_front_lower.stl" scale="1 1 1" /></geometry>
+          <material name="black" />
+        </visual>
+        <collision>
+          <origin xyz="0 0 0" rpy="0 0 0" />
+          <geometry><mesh filename="meshes/${prefix}_battery_bay_post_front_lower.stl" scale="1 1 1" /></geometry>
+        </collision>
+      </link>
+    <joint name="${prefix}_battery_bay_post_front_lower_joint" type="fixed">
+      <parent link="${prefix}_pod"/><child link="${prefix}_battery_bay_post_front_lower"/>
+      <origin xyz="0.2 0 0.19" rpy="0 0 0"/>
+    </joint>
+    <link name="${prefix}_battery_bay_post_front_upper">
+        <inertial>
+          <origin xyz="0 0 0" rpy="0 0 0" />
+          <mass value="0.440782" />
+          <inertia ixx="0.00236355" ixy="-6.22061e-16" ixz="-7.08967e-17" iyy="0.000265879" iyz="-3.01883e-16" izz="0.00213383" />
+        </inertial>
+        <visual>
+          <origin xyz="0 0 0" rpy="0 0 0" />
+          <geometry><mesh filename="meshes/${prefix}_battery_bay_post_front_upper.stl" scale="1 1 1" /></geometry>
+          <material name="black" />
+        </visual>
+        <collision>
+          <origin xyz="0 0 0" rpy="0 0 0" />
+          <geometry><mesh filename="meshes/${prefix}_battery_bay_post_front_upper.stl" scale="1 1 1" /></geometry>
+        </collision>
+      </link>
+    <joint name="${prefix}_battery_bay_post_front_upper_joint" type="fixed">
+      <parent link="${prefix}_pod"/><child link="${prefix}_battery_bay_post_front_upper"/>
+      <origin xyz="0.2 0 0.33" rpy="0 0 0"/>
+    </joint>
+    <link name="${prefix}_battery_bay_post_rear_lower">
+        <inertial>
+          <origin xyz="0 0 0" rpy="0 0 0" />
+          <mass value="0.440782" />
+          <inertia ixx="0.00236355" ixy="3.5677e-16" ixz="2.50139e-19" iyy="0.000265879" iyz="-7.71859e-18" izz="0.00213383" />
+        </inertial>
+        <visual>
+          <origin xyz="0 0 0" rpy="0 0 0" />
+          <geometry><mesh filename="meshes/${prefix}_battery_bay_post_rear_lower.stl" scale="1 1 1" /></geometry>
+          <material name="black" />
+        </visual>
+        <collision>
+          <origin xyz="0 0 0" rpy="0 0 0" />
+          <geometry><mesh filename="meshes/${prefix}_battery_bay_post_rear_lower.stl" scale="1 1 1" /></geometry>
+        </collision>
+      </link>
+    <joint name="${prefix}_battery_bay_post_rear_lower_joint" type="fixed">
+      <parent link="${prefix}_pod"/><child link="${prefix}_battery_bay_post_rear_lower"/>
+      <origin xyz="-0.14 0 0.19" rpy="0 0 0"/>
+    </joint>
+    <link name="${prefix}_battery_bay_post_rear_upper">
+        <inertial>
+          <origin xyz="0 0 0" rpy="0 0 0" />
+          <mass value="0.440782" />
+          <inertia ixx="0.00236355" ixy="-3.38474e-16" ixz="-3.08744e-17" iyy="0.000265879" iyz="-6.40357e-17" izz="0.00213383" />
+        </inertial>
+        <visual>
+          <origin xyz="0 0 0" rpy="0 0 0" />
+          <geometry><mesh filename="meshes/${prefix}_battery_bay_post_rear_upper.stl" scale="1 1 1" /></geometry>
+          <material name="black" />
+        </visual>
+        <collision>
+          <origin xyz="0 0 0" rpy="0 0 0" />
+          <geometry><mesh filename="meshes/${prefix}_battery_bay_post_rear_upper.stl" scale="1 1 1" /></geometry>
+        </collision>
+      </link>
+    <joint name="${prefix}_battery_bay_post_rear_upper_joint" type="fixed">
+      <parent link="${prefix}_pod"/><child link="${prefix}_battery_bay_post_rear_upper"/>
+      <origin xyz="-0.14 0 0.33" rpy="0 0 0"/>
+    </joint>
+    <link name="${prefix}_battery_bay_rail_front">
+        <inertial>
+          <origin xyz="0 0 0" rpy="0 0 0" />
+          <mass value="0.440782" />
+          <inertia ixx="0.00213383" ixy="-2.28699e-16" ixz="1.82959e-17" iyy="0.000265879" iyz="1.14349e-17" izz="0.00236355" />
+        </inertial>
+        <visual>
+          <origin xyz="0 0 0" rpy="0 0 0" />
+          <geometry><mesh filename="meshes/${prefix}_battery_bay_rail_front.stl" scale="1 1 1" /></geometry>
+          <material name="black" />
+        </visual>
+        <collision>
+          <origin xyz="0 0 0" rpy="0 0 0" />
+          <geometry><mesh filename="meshes/${prefix}_battery_bay_rail_front.stl" scale="1 1 1" /></geometry>
+        </collision>
+      </link>
+    <joint name="${prefix}_battery_bay_rail_front_joint" type="fixed">
+      <parent link="${prefix}_pod"/><child link="${prefix}_battery_bay_rail_front"/>
+      <origin xyz="0.15 0 0.16" rpy="0 0 0"/>
+    </joint>
+    <link name="${prefix}_battery_bay_rail_rear">
+        <inertial>
+          <origin xyz="0 0 0" rpy="0 0 0" />
+          <mass value="0.440782" />
+          <inertia ixx="0.00213383" ixy="-1.00628e-16" ixz="4.57398e-18" iyy="0.000265879" iyz="-1.32645e-16" izz="0.00236355" />
+        </inertial>
+        <visual>
+          <origin xyz="0 0 0" rpy="0 0 0" />
+          <geometry><mesh filename="meshes/${prefix}_battery_bay_rail_rear.stl" scale="1 1 1" /></geometry>
+          <material name="black" />
+        </visual>
+        <collision>
+          <origin xyz="0 0 0" rpy="0 0 0" />
+          <geometry><mesh filename="meshes/${prefix}_battery_bay_rail_rear.stl" scale="1 1 1" /></geometry>
+        </collision>
+      </link>
+    <joint name="${prefix}_battery_bay_rail_rear_joint" type="fixed">
+      <parent link="${prefix}_pod"/><child link="${prefix}_battery_bay_rail_rear"/>
+      <origin xyz="-0.09 0 0.16" rpy="0 0 0"/>
+    </joint>
+    <link name="${prefix}_connector_rear_body">
+        <inertial>
+          <origin xyz="0.001387 0 -0.002888" rpy="0 0 0" />
+          <mass value="0.0235404" />
+          <inertia ixx="1.75473e-06" ixy="-1.17208e-14" ixz="-3.21266e-09" iyy="2.0218e-06" iyz="-5.42691e-14" izz="1.84144e-06" />
+        </inertial>
+        <visual>
+          <origin xyz="0 0 0" rpy="0 0 0" />
+          <geometry><mesh filename="meshes/${prefix}_connector_rear_body.stl" scale="1 1 1" /></geometry>
+          <material name="white" />
+        </visual>
+        <collision>
+          <origin xyz="0 0 0" rpy="0 0 0" />
+          <geometry><mesh filename="meshes/${prefix}_connector_rear_body.stl" scale="1 1 1" /></geometry>
+        </collision>
+      </link>
+    <joint name="${prefix}_connector_rear_body_joint" type="fixed">
+      <parent link="${prefix}_control_box"/><child link="${prefix}_connector_rear_body"/>
+      <origin xyz="-0.0349 ${-0.05*side} -0.016599" rpy="0 0 0"/>
+    </joint>
+    <link name="${prefix}_connector_rear_cap">
+        <inertial>
+          <origin xyz="-0.000464 0 -0.019873" rpy="0 0 0" />
+          <mass value="0.0111605" />
+          <inertia ixx="4.45482e-06" ixy="4.05941e-17" ixz="1.78706e-07" iyy="4.04969e-06" iyz="-4.71691e-18" izz="5.00893e-07" />
+        </inertial>
+        <visual>
+          <origin xyz="0 0 0" rpy="0 0 0" />
+          <geometry><mesh filename="meshes/${prefix}_connector_rear_cap.stl" scale="1 1 1" /></geometry>
+          <material name="black" />
+        </visual>
+        <collision>
+          <origin xyz="0 0 0" rpy="0 0 0" />
+          <geometry><mesh filename="meshes/${prefix}_connector_rear_cap.stl" scale="1 1 1" /></geometry>
+        </collision>
+      </link>
+    <joint name="${prefix}_connector_rear_cap_joint" type="fixed">
+      <parent link="${prefix}_control_box"/><child link="${prefix}_connector_rear_cap"/>
+      <origin xyz="-0.0285 ${-0.05*side} -0.046255" rpy="0 0 0"/>
+    </joint>
+    <link name="${prefix}_connector_top_body">
+        <inertial>
+          <origin xyz="0 0.002888 -0.001387" rpy="0 0 0" />
+          <mass value="0.0235404" />
+          <inertia ixx="2.0218e-06" ixy="5.38643e-14" ixz="1.16288e-14" iyy="1.84144e-06" iyz="-3.21266e-09" izz="1.75473e-06" />
+        </inertial>
+        <visual>
+          <origin xyz="0 0 0" rpy="0 0 0" />
+          <geometry><mesh filename="meshes/${prefix}_connector_top_body.stl" scale="1 1 1" /></geometry>
+          <material name="white" />
+        </visual>
+        <collision>
+          <origin xyz="0 0 0" rpy="0 0 0" />
+          <geometry><mesh filename="meshes/${prefix}_connector_top_body.stl" scale="1 1 1" /></geometry>
+        </collision>
+      </link>
+    <joint name="${prefix}_connector_top_body_joint" type="fixed">
+      <parent link="${prefix}_control_box"/><child link="${prefix}_connector_top_body"/>
+      <origin xyz="0.005 ${-0.043401*side} 0.0549" rpy="0 0 0"/>
+    </joint>
+    <link name="${prefix}_connector_top_cap">
+        <inertial>
+          <origin xyz="0 0.019873 0.000464" rpy="0 0 0" />
+          <mass value="0.0111605" />
+          <inertia ixx="4.04969e-06" ixy="2.51569e-17" ixz="-1.71524e-18" iyy="5.00893e-07" iyz="1.78706e-07" izz="4.45482e-06" />
+        </inertial>
+        <visual>
+          <origin xyz="0 0 0" rpy="0 0 0" />
+          <geometry><mesh filename="meshes/${prefix}_connector_top_cap.stl" scale="1 1 1" /></geometry>
+          <material name="black" />
+        </visual>
+        <collision>
+          <origin xyz="0 0 0" rpy="0 0 0" />
+          <geometry><mesh filename="meshes/${prefix}_connector_top_cap.stl" scale="1 1 1" /></geometry>
+        </collision>
+      </link>
+    <joint name="${prefix}_connector_top_cap_joint" type="fixed">
+      <parent link="${prefix}_control_box"/><child link="${prefix}_connector_top_cap"/>
+      <origin xyz="0.005 ${-0.013745*side} 0.0485" rpy="0 0 0"/>
+    </joint>
+    <link name="${prefix}_control_box">
+        <inertial>
+          <origin xyz="0.000356 6.4e-05 -0.000218" rpy="0 0 0" />
+          <mass value="0.396341" />
+          <inertia ixx="0.00162783" ixy="-2.20896e-06" ixz="1.07987e-06" iyy="0.000724719" iyz="-6.32983e-07" izz="0.00134264" />
+        </inertial>
+        <visual>
+          <origin xyz="0 0 0" rpy="0 0 0" />
+          <geometry><mesh filename="meshes/${prefix}_control_box.stl" scale="1 1 1" /></geometry>
+          <material name="grey" />
+        </visual>
+        <collision>
+          <origin xyz="0 0 0" rpy="0 0 0" />
+          <geometry><mesh filename="meshes/${prefix}_control_box.stl" scale="1 1 1" /></geometry>
+        </collision>
+      </link>
+    <joint name="${prefix}_control_box_joint" type="fixed">
+      <parent link="${prefix}_pod"/><child link="${prefix}_control_box"/>
+      <origin xyz="-0.48 ${-0.04*side} 0.34" rpy="0 0 0"/>
+    </joint>
+    <link name="${prefix}_control_box_antenna">
+        <inertial>
+          <origin xyz="-0.004106 0 -0.001909" rpy="0 0 0" />
+          <mass value="0.0228833" />
+          <inertia ixx="2.24908e-05" ixy="8.69056e-17" ixz="6.67984e-07" iyy="2.262e-05" iyz="-1.88677e-17" izz="3.99526e-07" />
+        </inertial>
+        <visual>
+          <origin xyz="0 0 0" rpy="0 0 0" />
+          <geometry><mesh filename="meshes/${prefix}_control_box_antenna.stl" scale="1 1 1" /></geometry>
+          <material name="black" />
+        </visual>
+        <collision>
+          <origin xyz="0 0 0" rpy="0 0 0" />
+          <geometry><mesh filename="meshes/${prefix}_control_box_antenna.stl" scale="1 1 1" /></geometry>
+        </collision>
+      </link>
+    <joint name="${prefix}_control_box_antenna_joint" type="fixed">
+      <parent link="${prefix}_control_box"/><child link="${prefix}_control_box_antenna"/>
+      <origin xyz="-0.039682 ${-0.05*side} 0.069625" rpy="0 0 0"/>
+    </joint>
+    <link name="${prefix}_control_box_push_button">
+        <inertial>
+          <origin xyz="-0.000509 -3e-06 -3e-06" rpy="0 0 0" />
+          <mass value="0.013127" />
+          <inertia ixx="3.87723e-07" ixy="-4.86697e-10" ixz="-1.65374e-10" iyy="9.65582e-07" iyz="-6.22346e-11" izz="9.65489e-07" />
+        </inertial>
+        <visual>
+          <origin xyz="0 0 0" rpy="0 0 0" />
+          <geometry><mesh filename="meshes/${prefix}_control_box_push_button.stl" scale="1 1 1" /></geometry>
+          <material name="grey" />
+        </visual>
+        <collision>
+          <origin xyz="0 0 0" rpy="0 0 0" />
+          <geometry><mesh filename="meshes/${prefix}_control_box_push_button.stl" scale="1 1 1" /></geometry>
+        </collision>
+      </link>
+    <joint name="${prefix}_control_box_push_button_joint" type="fixed">
+      <parent link="${prefix}_control_box"/><child link="${prefix}_control_box_push_button"/>
+      <origin xyz="-0.01875 ${0.05*side} -0.02" rpy="0 0 0"/>
+    </joint>
+    <link name="${prefix}_deck_filler_front">
+        <inertial>
+          <origin xyz="-0.006466 0.002163 0" rpy="0 0 0" />
+          <mass value="0.248892" />
+          <inertia ixx="6.62253e-05" ixy="-1.48203e-05" ixz="-9.12824e-12" iyy="0.000789953" iyz="-2.08019e-11" izz="0.000838735" />
+        </inertial>
+        <visual>
+          <origin xyz="0 0 0" rpy="0 0 0" />
+          <geometry><mesh filename="meshes/${prefix}_deck_filler_front.stl" scale="1 1 1" /></geometry>
+          <material name="grey" />
+        </visual>
+        <collision>
+          <origin xyz="0 0 0" rpy="0 0 0" />
+          <geometry><mesh filename="meshes/${prefix}_deck_filler_front.stl" scale="1 1 1" /></geometry>
+        </collision>
+      </link>
+    <joint name="${prefix}_deck_filler_front_joint" type="fixed">
+      <parent link="${prefix}_pod"/><child link="${prefix}_deck_filler_front"/>
+      <origin xyz="0.27 ${-0.0935*side} 0.38" rpy="0 0 0"/>
+    </joint>
+    <link name="${prefix}_deck_filler_rear">
+        <inertial>
+          <origin xyz="0.006466 0.002163 0" rpy="0 0 0" />
+          <mass value="0.248892" />
+          <inertia ixx="6.62253e-05" ixy="1.48203e-05" ixz="-9.12806e-12" iyy="0.000789953" iyz="2.08011e-11" izz="0.000838735" />
+        </inertial>
+        <visual>
+          <origin xyz="0 0 0" rpy="0 0 0" />
+          <geometry><mesh filename="meshes/${prefix}_deck_filler_rear.stl" scale="1 1 1" /></geometry>
+          <material name="grey" />
+        </visual>
+        <collision>
+          <origin xyz="0 0 0" rpy="0 0 0" />
+          <geometry><mesh filename="meshes/${prefix}_deck_filler_rear.stl" scale="1 1 1" /></geometry>
+        </collision>
+      </link>
+    <joint name="${prefix}_deck_filler_rear_joint" type="fixed">
+      <parent link="${prefix}_pod"/><child link="${prefix}_deck_filler_rear"/>
+      <origin xyz="-0.37 ${-0.0935*side} 0.38" rpy="0 0 0"/>
+    </joint>
+    <link name="${prefix}_deck_slat_01">
+        <inertial>
+          <origin xyz="0 0 0" rpy="0 0 0" />
+          <mass value="0.440782" />
+          <inertia ixx="0.00213383" ixy="-1.64663e-15" ixz="-1.37219e-16" iyy="0.000265879" iyz="-5.67173e-16" izz="0.00236355" />
+        </inertial>
+        <visual>
+          <origin xyz="0 0 0" rpy="0 0 0" />
+          <geometry><mesh filename="meshes/${prefix}_deck_slat_01.stl" scale="1 1 1" /></geometry>
+          <material name="black" />
+        </visual>
+        <collision>
+          <origin xyz="0 0 0" rpy="0 0 0" />
+          <geometry><mesh filename="meshes/${prefix}_deck_slat_01.stl" scale="1 1 1" /></geometry>
+        </collision>
+      </link>
+    <joint name="${prefix}_deck_slat_01_joint" type="fixed">
+      <parent link="${prefix}_pod"/><child link="${prefix}_deck_slat_01"/>
+      <origin xyz="0.39 0 0.38" rpy="0 0 0"/>
+    </joint>
+    <link name="${prefix}_deck_slat_02">
+        <inertial>
+          <origin xyz="0 0 0" rpy="0 0 0" />
+          <mass value="0.348952" />
+          <inertia ixx="0.00106408" ixy="5.85469e-16" ixz="6.17487e-17" iyy="0.000210487" iyz="4.84842e-16" izz="0.00124594" />
+        </inertial>
+        <visual>
+          <origin xyz="0 0 0" rpy="0 0 0" />
+          <geometry><mesh filename="meshes/${prefix}_deck_slat_02.stl" scale="1 1 1" /></geometry>
+          <material name="black" />
+        </visual>
+        <collision>
+          <origin xyz="0 0 0" rpy="0 0 0" />
+          <geometry><mesh filename="meshes/${prefix}_deck_slat_02.stl" scale="1 1 1" /></geometry>
+        </collision>
+      </link>
+    <joint name="${prefix}_deck_slat_02_joint" type="fixed">
+      <parent link="${prefix}_pod"/><child link="${prefix}_deck_slat_02"/>
+      <origin xyz="0.31 ${0.025*side} 0.38" rpy="0 0 0"/>
+    </joint>
+    <link name="${prefix}_deck_slat_03">
+        <inertial>
+          <origin xyz="0 0 0" rpy="0 0 0" />
+          <mass value="0.348952" />
+          <inertia ixx="0.00106408" ixy="2.21381e-15" ixz="5.00851e-16" iyy="0.000210487" iyz="1.8113e-15" izz="0.00124594" />
+        </inertial>
+        <visual>
+          <origin xyz="0 0 0" rpy="0 0 0" />
+          <geometry><mesh filename="meshes/${prefix}_deck_slat_03.stl" scale="1 1 1" /></geometry>
+          <material name="black" />
+        </visual>
+        <collision>
+          <origin xyz="0 0 0" rpy="0 0 0" />
+          <geometry><mesh filename="meshes/${prefix}_deck_slat_03.stl" scale="1 1 1" /></geometry>
+        </collision>
+      </link>
+    <joint name="${prefix}_deck_slat_03_joint" type="fixed">
+      <parent link="${prefix}_pod"/><child link="${prefix}_deck_slat_03"/>
+      <origin xyz="0.23 ${0.025*side} 0.38" rpy="0 0 0"/>
+    </joint>
+    <link name="${prefix}_deck_slat_04">
+        <inertial>
+          <origin xyz="0 0 0" rpy="0 0 0" />
+          <mass value="0.440782" />
+          <inertia ixx="0.00213383" ixy="-2.37847e-16" ixz="-8.23316e-17" iyy="0.000265879" iyz="-4.11658e-16" izz="0.00236355" />
+        </inertial>
+        <visual>
+          <origin xyz="0 0 0" rpy="0 0 0" />
+          <geometry><mesh filename="meshes/${prefix}_deck_slat_04.stl" scale="1 1 1" /></geometry>
+          <material name="black" />
+        </visual>
+        <collision>
+          <origin xyz="0 0 0" rpy="0 0 0" />
+          <geometry><mesh filename="meshes/${prefix}_deck_slat_04.stl" scale="1 1 1" /></geometry>
+        </collision>
+      </link>
+    <joint name="${prefix}_deck_slat_04_joint" type="fixed">
+      <parent link="${prefix}_pod"/><child link="${prefix}_deck_slat_04"/>
+      <origin xyz="0.15 0 0.38" rpy="0 0 0"/>
+    </joint>
+    <link name="${prefix}_deck_slat_05">
+        <inertial>
+          <origin xyz="0 0 0" rpy="0 0 0" />
+          <mass value="0.440782" />
+          <inertia ixx="0.00213383" ixy="1.09775e-16" ixz="1.71524e-17" iyy="0.000265879" iyz="3.84214e-16" izz="0.00236355" />
+        </inertial>
+        <visual>
+          <origin xyz="0 0 0" rpy="0 0 0" />
+          <geometry><mesh filename="meshes/${prefix}_deck_slat_05.stl" scale="1 1 1" /></geometry>
+          <material name="black" />
+        </visual>
+        <collision>
+          <origin xyz="0 0 0" rpy="0 0 0" />
+          <geometry><mesh filename="meshes/${prefix}_deck_slat_05.stl" scale="1 1 1" /></geometry>
+        </collision>
+      </link>
+    <joint name="${prefix}_deck_slat_05_joint" type="fixed">
+      <parent link="${prefix}_pod"/><child link="${prefix}_deck_slat_05"/>
+      <origin xyz="0.07 0 0.38" rpy="0 0 0"/>
+    </joint>
+    <link name="${prefix}_deck_slat_06">
+        <inertial>
+          <origin xyz="0 0 0" rpy="0 0 0" />
+          <mass value="0.440782" />
+          <inertia ixx="0.00213383" ixy="9.14796e-18" ixz="-5.71747e-18" iyy="0.000265879" iyz="7.50132e-16" izz="0.00236355" />
+        </inertial>
+        <visual>
+          <origin xyz="0 0 0" rpy="0 0 0" />
+          <geometry><mesh filename="meshes/${prefix}_deck_slat_06.stl" scale="1 1 1" /></geometry>
+          <material name="black" />
+        </visual>
+        <collision>
+          <origin xyz="0 0 0" rpy="0 0 0" />
+          <geometry><mesh filename="meshes/${prefix}_deck_slat_06.stl" scale="1 1 1" /></geometry>
+        </collision>
+      </link>
+    <joint name="${prefix}_deck_slat_06_joint" type="fixed">
+      <parent link="${prefix}_pod"/><child link="${prefix}_deck_slat_06"/>
+      <origin xyz="-0.01 0 0.38" rpy="0 0 0"/>
+    </joint>
+    <link name="${prefix}_deck_slat_07">
+        <inertial>
+          <origin xyz="0 0 0" rpy="0 0 0" />
+          <mass value="0.440782" />
+          <inertia ixx="0.00213383" ixy="2.60717e-16" ixz="-2.51569e-17" iyy="0.000265879" iyz="-4.9399e-16" izz="0.00236355" />
+        </inertial>
+        <visual>
+          <origin xyz="0 0 0" rpy="0 0 0" />
+          <geometry><mesh filename="meshes/${prefix}_deck_slat_07.stl" scale="1 1 1" /></geometry>
+          <material name="black" />
+        </visual>
+        <collision>
+          <origin xyz="0 0 0" rpy="0 0 0" />
+          <geometry><mesh filename="meshes/${prefix}_deck_slat_07.stl" scale="1 1 1" /></geometry>
+        </collision>
+      </link>
+    <joint name="${prefix}_deck_slat_07_joint" type="fixed">
+      <parent link="${prefix}_pod"/><child link="${prefix}_deck_slat_07"/>
+      <origin xyz="-0.09 0 0.38" rpy="0 0 0"/>
+    </joint>
+    <link name="${prefix}_deck_slat_08">
+        <inertial>
+          <origin xyz="0 0 0" rpy="0 0 0" />
+          <mass value="0.440782" />
+          <inertia ixx="0.00213383" ixy="-7.40984e-16" ixz="-1.37219e-16" iyy="0.000265879" iyz="8.87352e-16" izz="0.00236355" />
+        </inertial>
+        <visual>
+          <origin xyz="0 0 0" rpy="0 0 0" />
+          <geometry><mesh filename="meshes/${prefix}_deck_slat_08.stl" scale="1 1 1" /></geometry>
+          <material name="black" />
+        </visual>
+        <collision>
+          <origin xyz="0 0 0" rpy="0 0 0" />
+          <geometry><mesh filename="meshes/${prefix}_deck_slat_08.stl" scale="1 1 1" /></geometry>
+        </collision>
+      </link>
+    <joint name="${prefix}_deck_slat_08_joint" type="fixed">
+      <parent link="${prefix}_pod"/><child link="${prefix}_deck_slat_08"/>
+      <origin xyz="-0.17 0 0.38" rpy="0 0 0"/>
+    </joint>
+    <link name="${prefix}_deck_slat_09">
+        <inertial>
+          <origin xyz="0 0 0" rpy="0 0 0" />
+          <mass value="0.440782" />
+          <inertia ixx="0.00213383" ixy="1.73811e-15" ixz="1.16636e-16" iyy="0.000265879" iyz="3.65918e-17" izz="0.00236355" />
+        </inertial>
+        <visual>
+          <origin xyz="0 0 0" rpy="0 0 0" />
+          <geometry><mesh filename="meshes/${prefix}_deck_slat_09.stl" scale="1 1 1" /></geometry>
+          <material name="black" />
+        </visual>
+        <collision>
+          <origin xyz="0 0 0" rpy="0 0 0" />
+          <geometry><mesh filename="meshes/${prefix}_deck_slat_09.stl" scale="1 1 1" /></geometry>
+        </collision>
+      </link>
+    <joint name="${prefix}_deck_slat_09_joint" type="fixed">
+      <parent link="${prefix}_pod"/><child link="${prefix}_deck_slat_09"/>
+      <origin xyz="-0.25 0 0.38" rpy="0 0 0"/>
+    </joint>
+    <link name="${prefix}_deck_slat_10">
+        <inertial>
+          <origin xyz="0 0 0" rpy="0 0 0" />
+          <mass value="0.348952" />
+          <inertia ixx="0.00106408" ixy="-6.95245e-16" ixz="-2.92735e-16" iyy="0.000210487" iyz="1.07946e-15" izz="0.00124594" />
+        </inertial>
+        <visual>
+          <origin xyz="0 0 0" rpy="0 0 0" />
+          <geometry><mesh filename="meshes/${prefix}_deck_slat_10.stl" scale="1 1 1" /></geometry>
+          <material name="black" />
+        </visual>
+        <collision>
+          <origin xyz="0 0 0" rpy="0 0 0" />
+          <geometry><mesh filename="meshes/${prefix}_deck_slat_10.stl" scale="1 1 1" /></geometry>
+        </collision>
+      </link>
+    <joint name="${prefix}_deck_slat_10_joint" type="fixed">
+      <parent link="${prefix}_pod"/><child link="${prefix}_deck_slat_10"/>
+      <origin xyz="-0.33 ${0.025*side} 0.38" rpy="0 0 0"/>
+    </joint>
+    <link name="${prefix}_deck_slat_11">
+        <inertial>
+          <origin xyz="0 0 0" rpy="0 0 0" />
+          <mass value="0.348952" />
+          <inertia ixx="0.00106408" ixy="3.01883e-15" ixz="2.60717e-16" iyy="0.000210487" iyz="-3.84214e-16" izz="0.00124594" />
+        </inertial>
+        <visual>
+          <origin xyz="0 0 0" rpy="0 0 0" />
+          <geometry><mesh filename="meshes/${prefix}_deck_slat_11.stl" scale="1 1 1" /></geometry>
+          <material name="black" />
+        </visual>
+        <collision>
+          <origin xyz="0 0 0" rpy="0 0 0" />
+          <geometry><mesh filename="meshes/${prefix}_deck_slat_11.stl" scale="1 1 1" /></geometry>
+        </collision>
+      </link>
+    <joint name="${prefix}_deck_slat_11_joint" type="fixed">
+      <parent link="${prefix}_pod"/><child link="${prefix}_deck_slat_11"/>
+      <origin xyz="-0.41 ${0.025*side} 0.38" rpy="0 0 0"/>
+    </joint>
+    <link name="${prefix}_estop_front">
+        <inertial>
+          <origin xyz="0.006415 0 0" rpy="0 0 0" />
+          <mass value="0.0606052" />
+          <inertia ixx="5.53635e-06" ixy="5.16859e-16" ixz="-1.08632e-17" iyy="1.2128e-05" iyz="-4.50788e-09" izz="1.21404e-05" />
+        </inertial>
+        <visual>
+          <origin xyz="0 0 0" rpy="0 0 0" />
+          <geometry><mesh filename="meshes/${prefix}_estop_front.stl" scale="1 1 1" /></geometry>
+          <material name="red" />
+        </visual>
+        <collision>
+          <origin xyz="0 0 0" rpy="0 0 0" />
+          <geometry><mesh filename="meshes/${prefix}_estop_front.stl" scale="1 1 1" /></geometry>
+        </collision>
+      </link>
+    <joint name="${prefix}_estop_front_joint" type="fixed">
+      <parent link="${prefix}_front_panel"/><child link="${prefix}_estop_front"/>
+      <origin xyz="0.0005 ${0.06*side} 0" rpy="0 0 0"/>
+    </joint>
+    <link name="${prefix}_estop_rear">
+        <inertial>
+          <origin xyz="-0.006415 0 0" rpy="0 0 0" />
+          <mass value="0.0606052" />
+          <inertia ixx="5.53635e-06" ixy="5.58025e-16" ixz="-9.14796e-18" iyy="1.2128e-05" iyz="4.50788e-09" izz="1.21404e-05" />
+        </inertial>
+        <visual>
+          <origin xyz="0 0 0" rpy="0 0 0" />
+          <geometry><mesh filename="meshes/${prefix}_estop_rear.stl" scale="1 1 1" /></geometry>
+          <material name="red" />
+        </visual>
+        <collision>
+          <origin xyz="0 0 0" rpy="0 0 0" />
+          <geometry><mesh filename="meshes/${prefix}_estop_rear.stl" scale="1 1 1" /></geometry>
+        </collision>
+      </link>
+    <joint name="${prefix}_estop_rear_joint" type="fixed">
+      <parent link="${prefix}_control_box"/><child link="${prefix}_estop_rear"/>
+      <origin xyz="-0.029 ${0.05*side} 0.02" rpy="0 0 0"/>
+    </joint>
+    <link name="${prefix}_front_crossmember_lower">
+        <inertial>
+          <origin xyz="0 0 0" rpy="0 0 0" />
+          <mass value="0.440782" />
+          <inertia ixx="0.00236355" ixy="9.03818e-15" ixz="-3.03026e-17" iyy="0.000265879" iyz="-1.15207e-16" izz="0.00213383" />
+        </inertial>
+        <visual>
+          <origin xyz="0 0 0" rpy="0 0 0" />
+          <geometry><mesh filename="meshes/${prefix}_front_crossmember_lower.stl" scale="1 1 1" /></geometry>
+          <material name="black" />
+        </visual>
+        <collision>
+          <origin xyz="0 0 0" rpy="0 0 0" />
+          <geometry><mesh filename="meshes/${prefix}_front_crossmember_lower.stl" scale="1 1 1" /></geometry>
+        </collision>
+      </link>
+    <joint name="${prefix}_front_crossmember_lower_joint" type="fixed">
+      <parent link="${prefix}_pod"/><child link="${prefix}_front_crossmember_lower"/>
+      <origin xyz="0.44 0 0.19" rpy="0 0 0"/>
+    </joint>
+    <link name="${prefix}_front_crossmember_upper">
+        <inertial>
+          <origin xyz="0 0 0" rpy="0 0 0" />
+          <mass value="0.440782" />
+          <inertia ixx="0.00236355" ixy="8.41612e-16" ixz="4.52824e-16" iyy="0.000265879" iyz="2.37847e-16" izz="0.00213383" />
+        </inertial>
+        <visual>
+          <origin xyz="0 0 0" rpy="0 0 0" />
+          <geometry><mesh filename="meshes/${prefix}_front_crossmember_upper.stl" scale="1 1 1" /></geometry>
+          <material name="black" />
+        </visual>
+        <collision>
+          <origin xyz="0 0 0" rpy="0 0 0" />
+          <geometry><mesh filename="meshes/${prefix}_front_crossmember_upper.stl" scale="1 1 1" /></geometry>
+        </collision>
+      </link>
+    <joint name="${prefix}_front_crossmember_upper_joint" type="fixed">
+      <parent link="${prefix}_pod"/><child link="${prefix}_front_crossmember_upper"/>
+      <origin xyz="0.44 0 0.35" rpy="0 0 0"/>
+    </joint>
+    <link name="${prefix}_front_panel">
+        <inertial>
+          <origin xyz="0 -0.001064 0" rpy="0 0 0" />
+          <mass value="0.171911" />
+          <inertia ixx="0.000946552" ixy="8.46186e-15" ixz="4.95133e-16" iyy="0.000118136" iyz="1.27843e-15" izz="0.000828674" />
+        </inertial>
+        <visual>
+          <origin xyz="0 0 0" rpy="0 0 0" />
+          <geometry><mesh filename="meshes/${prefix}_front_panel.stl" scale="1 1 1" /></geometry>
+          <material name="white" />
+        </visual>
+        <collision>
+          <origin xyz="0 0 0" rpy="0 0 0" />
+          <geometry><mesh filename="meshes/${prefix}_front_panel.stl" scale="1 1 1" /></geometry>
+        </collision>
+      </link>
+    <joint name="${prefix}_front_panel_joint" type="fixed">
+      <parent link="${prefix}_pod"/><child link="${prefix}_front_panel"/>
+      <origin xyz="0.439621 0 0.27" rpy="0 0 0"/>
+    </joint>
+    <link name="${prefix}_road_wheel_1">
+        <inertial>
+          <origin xyz="0 0 0" rpy="0 0 0" />
+          <mass value="2.68799" />
+          <inertia ixx="0.0100248" ixy="-7.31836e-16" ixz="2.19551e-16" iyy="0.00212957" iyz="7.31836e-17" izz="0.0100248" />
+        </inertial>
+        <visual>
+          <origin xyz="0 0 0" rpy="0 0 0" />
+          <geometry><mesh filename="meshes/${prefix}_road_wheel_1.stl" scale="1 1 1" /></geometry>
+          <material name="black" />
+        </visual>
+        <collision>
+          <origin xyz="0 0 0" rpy="0 0 0" />
+          <geometry><mesh filename="meshes/${prefix}_road_wheel_1.stl" scale="1 1 1" /></geometry>
+        </collision>
+      </link>
+    <joint name="${prefix}_road_wheel_1_joint" type="fixed">
+      <parent link="${prefix}_track"/><child link="${prefix}_road_wheel_1"/>
+      <origin xyz="0.381857 0 -0.053118" rpy="0 0 0"/>
+    </joint>
+    <link name="${prefix}_road_wheel_2">
+        <inertial>
+          <origin xyz="0 0 0" rpy="0 0 0" />
+          <mass value="2.68799" />
+          <inertia ixx="0.0100248" ixy="5.12286e-16" ixz="-1.28071e-16" iyy="0.00212957" iyz="-1.09775e-15" izz="0.0100248" />
+        </inertial>
+        <visual>
+          <origin xyz="0 0 0" rpy="0 0 0" />
+          <geometry><mesh filename="meshes/${prefix}_road_wheel_2.stl" scale="1 1 1" /></geometry>
+          <material name="black" />
+        </visual>
+        <collision>
+          <origin xyz="0 0 0" rpy="0 0 0" />
+          <geometry><mesh filename="meshes/${prefix}_road_wheel_2.stl" scale="1 1 1" /></geometry>
+        </collision>
+      </link>
+    <joint name="${prefix}_road_wheel_2_joint" type="fixed">
+      <parent link="${prefix}_track"/><child link="${prefix}_road_wheel_2"/>
+      <origin xyz="0.190929 0 -0.053118" rpy="0 0 0"/>
+    </joint>
+    <link name="${prefix}_road_wheel_3">
+        <inertial>
+          <origin xyz="0 0 0" rpy="0 0 0" />
+          <mass value="2.68799" />
+          <inertia ixx="0.0100248" ixy="5.48877e-17" ixz="0" iyy="0.00212957" iyz="4.39102e-16" izz="0.0100248" />
+        </inertial>
+        <visual>
+          <origin xyz="0 0 0" rpy="0 0 0" />
+          <geometry><mesh filename="meshes/${prefix}_road_wheel_3.stl" scale="1 1 1" /></geometry>
+          <material name="black" />
+        </visual>
+        <collision>
+          <origin xyz="0 0 0" rpy="0 0 0" />
+          <geometry><mesh filename="meshes/${prefix}_road_wheel_3.stl" scale="1 1 1" /></geometry>
+        </collision>
+      </link>
+    <joint name="${prefix}_road_wheel_3_joint" type="fixed">
+      <parent link="${prefix}_track"/><child link="${prefix}_road_wheel_3"/>
+      <origin xyz="0 0 -0.053118" rpy="0 0 0"/>
+    </joint>
+    <link name="${prefix}_road_wheel_4">
+        <inertial>
+          <origin xyz="0 0 0" rpy="0 0 0" />
+          <mass value="2.68799" />
+          <inertia ixx="0.0100248" ixy="2.19551e-16" ixz="5.48877e-17" iyy="0.00212957" iyz="1.46367e-16" izz="0.0100248" />
+        </inertial>
+        <visual>
+          <origin xyz="0 0 0" rpy="0 0 0" />
+          <geometry><mesh filename="meshes/${prefix}_road_wheel_4.stl" scale="1 1 1" /></geometry>
+          <material name="black" />
+        </visual>
+        <collision>
+          <origin xyz="0 0 0" rpy="0 0 0" />
+          <geometry><mesh filename="meshes/${prefix}_road_wheel_4.stl" scale="1 1 1" /></geometry>
+        </collision>
+      </link>
+    <joint name="${prefix}_road_wheel_4_joint" type="fixed">
+      <parent link="${prefix}_track"/><child link="${prefix}_road_wheel_4"/>
+      <origin xyz="-0.190929 0 -0.053118" rpy="0 0 0"/>
+    </joint>
+    <link name="${prefix}_road_wheel_5">
+        <inertial>
+          <origin xyz="0 0 0" rpy="0 0 0" />
+          <mass value="2.68799" />
+          <inertia ixx="0.0100248" ixy="1.46367e-16" ixz="2.56143e-16" iyy="0.00212957" iyz="-1.24412e-15" izz="0.0100248" />
+        </inertial>
+        <visual>
+          <origin xyz="0 0 0" rpy="0 0 0" />
+          <geometry><mesh filename="meshes/${prefix}_road_wheel_5.stl" scale="1 1 1" /></geometry>
+          <material name="black" />
+        </visual>
+        <collision>
+          <origin xyz="0 0 0" rpy="0 0 0" />
+          <geometry><mesh filename="meshes/${prefix}_road_wheel_5.stl" scale="1 1 1" /></geometry>
+        </collision>
+      </link>
+    <joint name="${prefix}_road_wheel_5_joint" type="fixed">
+      <parent link="${prefix}_track"/><child link="${prefix}_road_wheel_5"/>
+      <origin xyz="-0.381857 0 -0.053118" rpy="0 0 0"/>
+    </joint>
+    <link name="${prefix}_side_panel_inner">
+        <inertial>
+          <origin xyz="-0.001591 0 0.008627" rpy="0 0 0" />
+          <mass value="3.56216" />
+          <inertia ixx="0.0418192" ixy="1.91993e-15" ixz="0.00022718" iyy="0.265234" iyz="-2.76497e-14" izz="0.223424" />
+        </inertial>
+        <visual>
+          <origin xyz="0 0 0" rpy="0 0 0" />
+          <geometry><mesh filename="meshes/${prefix}_side_panel_inner.stl" scale="1 1 1" /></geometry>
+          <material name="white" />
+        </visual>
+        <collision>
+          <origin xyz="0 0 0" rpy="0 0 0" />
+          <geometry><mesh filename="meshes/${prefix}_side_panel_inner.stl" scale="1 1 1" /></geometry>
+        </collision>
+      </link>
+    <joint name="${prefix}_side_panel_inner_joint" type="fixed">
+      <parent link="${prefix}_pod"/><child link="${prefix}_side_panel_inner"/>
+      <origin xyz="0 ${-0.122*side} 0.195" rpy="0 0 0"/>
+    </joint>
+    <link name="${prefix}_side_panel_outer">
+        <inertial>
+          <origin xyz="-0.001658 0 0.008734" rpy="0 0 0" />
+          <mass value="3.56709" />
+          <inertia ixx="0.0418881" ixy="-8.39325e-16" ixz="0.000245575" iyy="0.265861" iyz="-1.78339e-14" izz="0.223982" />
+        </inertial>
+        <visual>
+          <origin xyz="0 0 0" rpy="0 0 0" />
+          <geometry><mesh filename="meshes/${prefix}_side_panel_outer.stl" scale="1 1 1" /></geometry>
+          <material name="white" />
+        </visual>
+        <collision>
+          <origin xyz="0 0 0" rpy="0 0 0" />
+          <geometry><mesh filename="meshes/${prefix}_side_panel_outer.stl" scale="1 1 1" /></geometry>
+        </collision>
+      </link>
+    <joint name="${prefix}_side_panel_outer_joint" type="fixed">
+      <parent link="${prefix}_pod"/><child link="${prefix}_side_panel_outer"/>
+      <origin xyz="0 ${0.122*side} 0.195" rpy="0 0 0"/>
+    </joint>
+    <link name="${prefix}_track" />
+    <joint name="${prefix}_track_joint" type="fixed">
+      <parent link="${prefix}_pod"/><child link="${prefix}_track"/>
+      <origin xyz="0.0365 ${0.0005*side} -0.005" rpy="0 0 0"/>
+    </joint>
+    <link name="${prefix}_track_belt">
+        <inertial>
+          <origin xyz="5.3e-05 3e-06 0.005667" rpy="0 0 0" />
+          <mass value="38.0002" />
+          <inertia ixx="0.504786" ixy="-3.02937e-05" ixz="8.60834e-06" iyy="4.87292" iyz="-6.70752e-06" izz="4.60571" />
+        </inertial>
+        <visual>
+          <origin xyz="0 0 0" rpy="0 0 0" />
+          <geometry><mesh filename="meshes/${prefix}_track_belt.stl" scale="1 1 1" /></geometry>
+          <material name="black" />
+        </visual>
+        <collision>
+          <origin xyz="0 0 0" rpy="0 0 0" />
+          <geometry><mesh filename="meshes/${prefix}_track_belt.stl" scale="1 1 1" /></geometry>
+        </collision>
+      </link>
+    <joint name="${prefix}_track_belt_joint" type="fixed">
+      <parent link="${prefix}_track"/><child link="${prefix}_track_belt"/>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+    </joint>
+    <link name="${prefix}_track_frame">
+        <inertial>
+          <origin xyz="0 0.003026 0" rpy="0 0 0" />
+          <mass value="17.6473" />
+          <inertia ixx="0.0922887" ixy="-5.22531e-14" ixz="4.75694e-16" iyy="3.59879" iyz="3.51281e-15" izz="3.65485" />
+        </inertial>
+        <visual>
+          <origin xyz="0 0 0" rpy="0 0 0" />
+          <geometry><mesh filename="meshes/${prefix}_track_frame.stl" scale="1 1 1" /></geometry>
+          <material name="black" />
+        </visual>
+        <collision>
+          <origin xyz="0 0 0" rpy="0 0 0" />
+          <geometry><mesh filename="meshes/${prefix}_track_frame.stl" scale="1 1 1" /></geometry>
+        </collision>
+      </link>
+    <joint name="${prefix}_track_frame_joint" type="fixed">
+      <parent link="${prefix}_track"/><child link="${prefix}_track_frame"/>
+      <origin xyz="0 ${0.01*side} 0.025" rpy="0 0 0"/>
+    </joint>
+    <link name="${prefix}_track_rail">
+        <inertial>
+          <origin xyz="0 0 0" rpy="0 0 0" />
+          <mass value="2.0871" />
+          <inertia ixx="0.000350107" ixy="-2.4608e-15" ixz="4.57398e-18" iyy="0.162984" iyz="-4.0251e-16" izz="0.162773" />
+        </inertial>
+        <visual>
+          <origin xyz="0 0 0" rpy="0 0 0" />
+          <geometry><mesh filename="meshes/${prefix}_track_rail.stl" scale="1 1 1" /></geometry>
+          <material name="black" />
+        </visual>
+        <collision>
+          <origin xyz="0 0 0" rpy="0 0 0" />
+          <geometry><mesh filename="meshes/${prefix}_track_rail.stl" scale="1 1 1" /></geometry>
+        </collision>
+      </link>
+    <joint name="${prefix}_track_rail_joint" type="fixed">
+      <parent link="${prefix}_track"/><child link="${prefix}_track_rail"/>
+      <origin xyz="0 ${-0.1105*side} 0.025" rpy="0 0 0"/>
+    </joint>
+  </xacro:macro>
+</robot>

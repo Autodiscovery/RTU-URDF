@@ -1,0 +1,161 @@
+<?xml version="1.0"?>
+<!-- Autodiscovery HEAD-lite v3 navigation payload (PLACEHOLDER geometry).
+     Primitives only - swap in the real STEP/STL meshes when available
+     (see README.md). Always included from rtu.urdf.xacro; instantiate
+     onto any mount point with the `parent` and `*origin` (mount offset)
+     macro args. Upside-down mounting (OAK facing forward while the unit
+     hangs below a beam) is baked into the macro body via a fixed
+     roll-180-about-X joint, so the caller only supplies the mount pose. -->
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+  <material name="silver">
+    <color rgba="0.75 0.75 0.78 1" />
+  </material>
+  <material name="dome_blue">
+    <color rgba="0.15 0.25 0.7 0.85" />
+  </material>
+  <xacro:macro name="head_lite" params="parent *origin">
+    <link name="head_lite_mount"/>
+    <joint name="head_lite_mount_joint" type="fixed">
+      <parent link="${parent}"/><child link="head_lite_mount"/>
+      <xacro:insert_block name="origin"/>
+    </joint>
+    <link name="head_lite_link">
+        <inertial>
+          <origin xyz="0 0 0.05" rpy="0 0 0" />
+          <mass value="1.5" />
+          <inertia ixx="0.003528" ixy="0" ixz="0" iyy="0.0027625" iyz="0" izz="0.003791" />
+        </inertial>
+        <visual>
+          <origin xyz="0 0 0.05" rpy="0 0 0" />
+          <geometry>
+            <box size="0.11 0.135 0.1" />
+          </geometry>
+          <material name="black" />
+        </visual>
+        <collision>
+          <origin xyz="0 0 0.05" rpy="0 0 0" />
+          <geometry>
+            <box size="0.11 0.135 0.1" />
+          </geometry>
+        </collision>
+      </link>
+    <joint name="head_lite_joint" type="fixed">
+      <parent link="head_lite_mount"/><child link="head_lite_link"/>
+      <origin xyz="0 0 0" rpy="3.14159265 0 0"/>
+    </joint>
+    <link name="head_lite_top_module">
+        <inertial>
+          <origin xyz="0 0 0" rpy="0 0 0" />
+          <mass value="0.25" />
+          <inertia ixx="0.0001214" ixy="0" ixz="0" iyy="0.0001214" iyz="0" izz="0.000176" />
+        </inertial>
+        <visual>
+          <origin xyz="0 0 0" rpy="0 0 0" />
+          <geometry>
+            <box size="0.065 0.065 0.04" />
+          </geometry>
+          <material name="black" />
+        </visual>
+        <collision>
+          <origin xyz="0 0 0" rpy="0 0 0" />
+          <geometry>
+            <box size="0.065 0.065 0.04" />
+          </geometry>
+        </collision>
+      </link>
+    <joint name="head_lite_top_module_joint" type="fixed">
+      <parent link="head_lite_link"/><child link="head_lite_top_module"/>
+      <origin xyz="0 0 0.12" rpy="0 0 0"/>
+    </joint>
+    <link name="head_lite_dome">
+        <inertial>
+          <origin xyz="0 0 0" rpy="0 0 0" />
+          <mass value="0.05" />
+          <inertia ixx="0.00001" ixy="0" ixz="0" iyy="0.00001" iyz="0" izz="0.00001" />
+        </inertial>
+        <visual>
+          <origin xyz="0 0 0" rpy="0 0 0" />
+          <geometry>
+            <cylinder radius="0.026" length="0.008" />
+          </geometry>
+          <material name="silver" />
+        </visual>
+        <visual>
+          <origin xyz="0 0 0.004" rpy="0 0 0" />
+          <geometry>
+            <sphere radius="0.0225" />
+          </geometry>
+          <material name="dome_blue" />
+        </visual>
+        <collision>
+          <origin xyz="0 0 0.012" rpy="0 0 0" />
+          <geometry>
+            <cylinder radius="0.026" length="0.032" />
+          </geometry>
+        </collision>
+      </link>
+    <joint name="head_lite_dome_joint" type="fixed">
+      <parent link="head_lite_top_module"/><child link="head_lite_dome"/>
+      <origin xyz="0 0 0.024" rpy="0 0 0"/>
+    </joint>
+    <link name="gnss_link" />
+    <joint name="gnss_joint" type="fixed">
+      <parent link="head_lite_dome"/><child link="gnss_link"/>
+      <origin xyz="0 0 0.004" rpy="0 0 0"/>
+    </joint>
+    <link name="oak_link">
+        <inertial>
+          <origin xyz="0 0 0" rpy="0 0 0" />
+          <mass value="0.2" />
+          <inertia ixx="0.0002167" ixy="0" ixz="0" iyy="0.00003" iyz="0" izz="0.0002167" />
+        </inertial>
+        <visual>
+          <origin xyz="0 0 0" rpy="0 0 0" />
+          <geometry>
+            <box size="0.03 0.11 0.03" />
+          </geometry>
+          <material name="silver" />
+        </visual>
+        <collision>
+          <origin xyz="0 0 0" rpy="0 0 0" />
+          <geometry>
+            <box size="0.03 0.11 0.03" />
+          </geometry>
+        </collision>
+      </link>
+    <joint name="oak_joint" type="fixed">
+      <parent link="head_lite_link"/><child link="oak_link"/>
+      <origin xyz="0.07 0 0.055" rpy="0 0 0"/>
+    </joint>
+    <link name="oak_rgb_camera_frame" />
+    <joint name="oak_rgb_camera_joint" type="fixed">
+      <parent link="oak_link"/><child link="oak_rgb_camera_frame"/>
+      <origin xyz="0.015 0 0" rpy="0 0 0"/>
+    </joint>
+    <link name="oak_rgb_camera_optical_frame" />
+    <joint name="oak_rgb_camera_optical_joint" type="fixed">
+      <parent link="oak_rgb_camera_frame"/><child link="oak_rgb_camera_optical_frame"/>
+      <origin xyz="0 0 0" rpy="-1.5707963 0 -1.5707963"/>
+    </joint>
+    <link name="oak_left_camera_frame" />
+    <joint name="oak_left_camera_joint" type="fixed">
+      <parent link="oak_link"/><child link="oak_left_camera_frame"/>
+      <origin xyz="0.015 0.0375 0" rpy="0 0 0"/>
+    </joint>
+    <link name="oak_left_camera_optical_frame" />
+    <joint name="oak_left_camera_optical_joint" type="fixed">
+      <parent link="oak_left_camera_frame"/><child link="oak_left_camera_optical_frame"/>
+      <origin xyz="0 0 0" rpy="-1.5707963 0 -1.5707963"/>
+    </joint>
+    <link name="oak_right_camera_frame" />
+    <joint name="oak_right_camera_joint" type="fixed">
+      <parent link="oak_link"/><child link="oak_right_camera_frame"/>
+      <origin xyz="0.015 -0.0375 0" rpy="0 0 0"/>
+    </joint>
+    <link name="oak_right_camera_optical_frame" />
+    <joint name="oak_right_camera_optical_joint" type="fixed">
+      <parent link="oak_right_camera_frame"/><child link="oak_right_camera_optical_frame"/>
+      <origin xyz="0 0 0" rpy="-1.5707963 0 -1.5707963"/>
+    </joint>
+  </xacro:macro>
+</robot>
